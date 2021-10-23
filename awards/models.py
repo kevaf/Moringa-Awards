@@ -17,3 +17,11 @@ class Profile(models.Model):
 
     def delete_profile(self):
         self.delete()
+
+class Projects(models.Model):
+    title = models.CharField(max_length=500)
+    description=models.TextField(max_length=2000)
+    link=models.URLField()
+    image=models.ImageField(upload_to='images/')
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
+
