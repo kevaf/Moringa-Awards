@@ -53,3 +53,23 @@ class Ratings(models.Model):
     content = models.IntegerField(default=1)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     project_id = models.ForeignKey(Projects,on_delete=models.CASCADE)
+
+class Comments(models.Model):
+    project_id = models.ForeignKey(Projects,on_delete=models.CASCADE)
+    text = models.CharField(max_length=1000)
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.user
+
+
+    @classmethod
+    def get_all_comments(cls,id):
+        comments = cls.objects.filter(project_id = id)
+        return comments
+
+    def save_comments(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
