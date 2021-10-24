@@ -7,7 +7,7 @@
     <div class="row roww">
         {% for project in all_projects %}
         <div class="card col-md-6" style="margin-bottom: 50px; padding-left: 100px;">
-            <h1 style="text-align: center; text-transform:uppercase;" class="card-title pictitle" style="width: 500px;"> {{project.title}} </h1>
+            <h2 style="text-align: center; text-transform:uppercase;" class="card-title pictitle" style="width: 500px;"> {{project.title}} </h2>
             <a href="/singleproject/{{project.id}}">
                 <img class="card-img-top img-fluid" style="width:600px;" src=" {{project.image.url}}" alt="{{post.name}}"></a>
             <div class="card-body" style="text-align: center;">
