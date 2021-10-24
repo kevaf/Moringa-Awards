@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/css?family=Courgette|Lato&display=swap" rel="stylesheet"> {%extends "registration/base.html"%} {% load bootstrap4 %} {% block content %}
-<div class="jumbotron caption">
+<div class="jumbotron caption" style="margin-left: -50%; margin-top: 50px;">
     <h1>--Moringa Awards--</h1>
     <h3>Sign in to rate and review projects.</h3>
 </div>
@@ -9,9 +9,9 @@
             <!-- Empty div -->
             <div class="col-md-1"></div>
             <div class="col-md-4">
-                <img class="img-fluid" src="https://www.sandiegoala.org/wp-content/uploads/2015/06/Spirit-of-SD-Awards.jpg" alt="login pic">
+                <img class="img-fluid" src="https://o.remove.bg/downloads/fd7c0998-58e0-4bc7-ba72-158f1f4a1c2d/pexels-photo-7005047-removebg-preview.png" alt="login pic" style="margin-left: -30px; margin-top: -120px; height: 350px;">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: -17%; margin-left: 50px;">
                 {% if form.errors %}
                 <p> Password or Username is incorrect </p>
                 {% endif %}
@@ -51,9 +51,14 @@
         margin-top: 5%;
         border: gold;
     }
+    body{
+        background-image: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     
     .caption {
-        font-family: 'Courgette', cursive;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: transparent !important;
         /* margin-left: 20%; */
         text-align: center;
