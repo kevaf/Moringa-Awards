@@ -1,0 +1,32 @@
+
+  
+{% extends 'base.html' %} {% load bootstrap4 %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card bg-transparent">
+                <div class="card-header">
+                    <h3><b><u>Update your profile</u></b></h3>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'editprofile' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %} {% bootstrap_form form %}
+                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+<style>
+    body{
+        background-image: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+{% endblock content %}
