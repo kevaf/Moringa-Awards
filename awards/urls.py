@@ -13,6 +13,9 @@ urlpatterns=[
     url(r'^editprofile/$',views.edit_profile,name='editprofile'),
     url(r'^singleproject/(\d+)',views.single_project,name='singleproject'),
     path('rate/<int:id>/',views.rate,name='rates'),
+    url(r'^api/profile/$',views.ProfileList.as_view()),
+    url(r'^api/projects/$',views.ProfileList.as_view()),
+    url(r'^logout/$',views.logout_request,name='logout')
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

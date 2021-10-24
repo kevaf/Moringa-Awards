@@ -157,3 +157,7 @@ class ProjectList(APIView):
         all_projects = Projects.objects.all()
         serializers = ProjectSerializer(all_projects,many = True)
         return Response(serializers.data)
+@login_required(login_url="/accounts/login/")
+def logout_request(request):
+  logout(request)
+  return redirect('home')
