@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile, Projects, Comments, Ratings
 from django.contrib.auth.models import User
 from .forms import NewProjectForm, EditprofileForm, CommentForm
-
+from django.contrib import messages
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -46,3 +47,26 @@ def search_results(request):
     else:
         message = 'You have not entered anything to search'
         return render(request,'search.html',{'message':message})
+
+@login_required(login_url = '/accounts/login/')
+def comment(request,id):
+    id = id
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.user = request.user
+            project = Projects.objects.get(id = id)
+            comment.project_id = project
+            comment.save()
+            return redirect('home')
+
+        else:
+            project_id = id
+            messages.info(request,'Ensure all the fields are filled')
+            return redirect('comment',id = project_id)
+
+    else:
+        id = id
+        form = CommentForm()
+        return render(request,'comment.html',{'form':form,'id':id})
