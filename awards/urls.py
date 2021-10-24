@@ -1,4 +1,5 @@
-from django.conf.urls import url, static
+from django.conf.urls import url
+from django.conf.urls.static import static
 from django.urls import path
 from . import views
 from django.conf import settings
@@ -13,3 +14,5 @@ urlpatterns=[
     url(r'^singleproject/(\d+)',views.single_project,name='singleproject'),
     path('rate/<int:id>/',views.rate,name='rates'),
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
