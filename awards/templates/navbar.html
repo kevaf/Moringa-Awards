@@ -1,0 +1,27 @@
+<nav id="nav" class="navbar sticky-top navbar-expand-lg navbar-light">
+    <div class="container">
+      <div class="col-md-4">
+        <a  id="icons" class=" navbar-brand" href="{%url 'home'%}"><i class="fab fa-instagram"></i> <i style="border-left:1px solid rgba(0,0,0,0.4);"> </i> <i class="space"></i>  MoringaAwards </a>
+      </div>
+      <div class="col-md-4">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form  action="{%url 'search_results'%}" role="search" class="form-inline  my-2 my-lg-0">
+            <input id="searchUp" class="form-control mr-sm-2" name="user" type="search" placeholder="Search" aria-label="Search">
+          </form>
+  
+        </div>
+  
+      </div>
+      <div class="col-md-4">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <a class="item" href="#" style="color: black;"><i class="far fa-user"></i></a>
+          <a class="item" href="#" style="margin-left: 20%; font-size: small; color: black;"><i class="fas fa-plus-square">Post</i></i></a>
+        <a class="item" href="/logout" style="margin-left: 20%; font-size: small; color: black;"><i class="fas fa-sign-out-alt">LogOut</i></a>
+        
+        </div>
+  
+  
+      </div>
+  
+    </div>
+  </nav>
