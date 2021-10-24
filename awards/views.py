@@ -32,3 +32,17 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request,'new_project.html',{'form':form})
+
+@login_required(login_url = '/accounts/login/')
+def search_results(request):
+
+    if 'project' in request.GET and request.GET['project']:
+        search_term = request.GET.get('project')
+        searched_projects = Projects.search_project(search_term)
+        message = f'{search_term}'
+
+        return render(request,'search.html',{'message':message,'project':searched_projects})
+
+    else:
+        message = 'You have not entered anything to search'
+        return render(request,'search.html',{'message':message})
