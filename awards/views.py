@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from .forms import NewProjectForm, EditProfileForm, CommentForm
 from django.contrib import messages
 from django.contrib.auth import logout
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .seriaizers import ProfileSerializer, ProjectSerializer
 
 # Create your views here.
 
@@ -142,3 +145,15 @@ def rate(request,id):
     else:
         messages.info(request,'Input all fields')
         return redirect('singleproject',id)
+
+class ProfileList(APIView):
+    def get(self,request,format = None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many = True)
+        return Response(serializers.data)
+
+class ProjectList(APIView):
+    def get(self,request,format = None):
+        all_projects = Projects.objects.all()
+        serializers = ProjectSerializer(all_projects,many = True)
+        return Response(serializers.data)
