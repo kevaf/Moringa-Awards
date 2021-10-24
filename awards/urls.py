@@ -6,4 +6,5 @@ from django.conf import settings
 urlpatterns=[
     url(r'^$', views.index, name='home'),
     path('profile/',views.profile,name = 'profile'),
+    url(r'^newproject/$',views.new_project,name='newproject'),
 ]
