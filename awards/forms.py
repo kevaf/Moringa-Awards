@@ -13,7 +13,7 @@ class CommentForm(forms.ModelForm):
         model = Comments
         exclude = ['user', 'project_id']
 
-class EditprofileForm(forms.ModelForm):
+class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user'] 

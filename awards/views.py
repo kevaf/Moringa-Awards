@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Projects, Comments, Ratings
 from django.contrib.auth.models import User
-from .forms import NewProjectForm, EditprofileForm, CommentForm
+from .forms import NewProjectForm, EditProfileForm, CommentForm
 from django.contrib import messages
 from django.contrib.auth import logout
 
@@ -70,3 +70,75 @@ def comment(request,id):
         id = id
         form = CommentForm()
         return render(request,'comment.html',{'form':form,'id':id})
+
+@login_required(login_url = '/accounts/login/')
+def edit_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('profile')
+
+    else:
+        form = EditProfileForm(request.POST,request.FILES)
+    return render(request,'update_profile.html',{'form':form})
+
+
+@login_required(login_url = '/accounts/login/')
+def single_project(request,id):  
+
+    project = Projects.objects.get(id = id)
+    comments = Comments.objects.filter(project_id = id)
+    rates = Ratings.objects.filter(project_id = id)
+    designrate = []
+    usabilityrate = []
+    contentrate = []
+    if rates:
+        for rate in rates:
+            designrate.append(rate.design)
+            usabilityrate.append(rate.usability)
+            contentrate.append(rate.content)
+
+        total = len(designrate)*10
+        design = round(sum(designrate)/total*100,1)
+        usability = round(sum(usabilityrate)/total*100,1)
+        content = round(sum(contentrate)/total*100,1)
+        return render(request,'single_project.html',{'project':project,'comments':comments,'design':design,'usability':usability,'content':usability})
+
+    else:
+        design = 0
+        usability = 0
+        content = 0       
+
+        return render(request,'single_project.html',{'project':project,'comments':comments,'design':design,'usability':usability,'content':usability})
+
+
+@login_required(login_url = '/accounts/login/')
+def rate(request,id):
+    if request.method =='POST':
+        rates = Ratings.objects.filter(id = id)
+        for rate in rates:
+            if rate.user == request.user:
+                messages.info(request,'You cannot rate a project twice')
+                return redirect('singleproject',id)
+        design = request.POST.get('design')
+        usability = request.POST.get('usability')
+        content = request.POST.get('content')
+
+        if design and usability and content:
+            project = Projects.objects.get(id = id)
+            rate = Ratings(design = design,usability = usability,content = content,project_id = project,user = request.user)
+            rate.save()
+            return redirect('singleproject',id)
+
+        else:
+            messages.info(request,'Input all fields')
+            return redirect('singleproject',id)
+
+
+    else:
+        messages.info(request,'Input all fields')
+        return redirect('singleproject',id)
