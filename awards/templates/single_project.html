@@ -11,7 +11,7 @@
                 <img class="card-img-top" width="500px" src=" {{project.image.url}}" alt="{{post.name}}">
                 <div class="card-body" style="text-align: center;">
                     <h4 class="card-title"> {{project.description}}</h4>
-                    <a href=" {{project.link}} "> {{project.link}} </a>
+                    <a href=" {{project.link}} " style="color: white;"> {{project.link}} </a>
                     <p class="card-text"><b>Posted by:</b> {{project.user}} </p>
 
                     <div class="row">
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-6 " style="padding-left: 10px;">
-            <div class="card-transparent" style="width:350px; padding-left: 60px;">
+            <div class="card-transparent" style="width:350px; padding-left: 110px;">
 
                 <form action=" {%url 'rates' project.id  %}" method="POST">
                     {% csrf_token %}
