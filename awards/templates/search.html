@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% load bootstrap4 %} 
 {% block content %}
 
-<divstyle=padding-top:120px;></div>
+<div></div>
 <div class="container">
     <div class="row">
-        {% if project %}
+        {% if project%}
         <h2> {{project|length}} projects found for keyword {{message}}</h2>
         {% else %}
         <h2> No projects found for the keyword {{message}} </h2>
