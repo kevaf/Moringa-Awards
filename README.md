@@ -29,9 +29,9 @@ This is a web app that allows users to sign up and log in to the website and als
 This web app was created by Kevin Kipyegon. If you have any suggestions or improvements you can reach the author via mail at kevin.kipyegon@student.moringaschool.com.
 
 ## Project Screenshot
-![Login]()
-![Profile]()
-![Stories]()
+![Login](awards/static/img/login.png)
+![Profile](awards/static/img/profile.png)
+![New](awards/static/img/new.png)
 
 ## Liscence.
 This is an open source project avaiable under the [MIT Liscence](LISCENCE).
